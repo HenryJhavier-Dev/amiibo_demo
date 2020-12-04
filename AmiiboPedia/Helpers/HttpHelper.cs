@@ -9,24 +9,22 @@ namespace AmiiboPedia.Helpers
     // https://www.amiiboapi.com/docs/#amiiboCharacter
     public class HttpHelper<T>
     {
-        public async void GetRestServiceDataAsync(string url) {
+        public async Task<T> GetRestServiceDataAsync(string url) {
 
             HttpClient client   = new HttpClient();
-            client.BaseAddress  = new Uri(url); 
+            client.BaseAddress  = new Uri(url);
+
+            string responseBody = string.Empty;
             //var response        = await client.GetAsync(url);
             //response.EnsureSuccessStatusCode();
             //string responseBody = await response.Content.ReadAsStringAsync();
-
-            //var result     = JsonConvert.DeserializeObject<T>(responseBody);
-
-            //return result;
 
             // Call asynchronous network methods in a try/catch block to handle exceptions.
             try
             {
                 HttpResponseMessage response = await client.GetAsync(client.BaseAddress);
                 response.EnsureSuccessStatusCode();
-                string responseBody = await response.Content.ReadAsStringAsync();
+                responseBody = await response.Content.ReadAsStringAsync();
                 // Above three lines can be replaced with new helper method below
                 // string responseBody = await client.GetStringAsync(uri);
 
@@ -38,7 +36,9 @@ namespace AmiiboPedia.Helpers
                 Console.WriteLine("Message :{0} ", e.Message);
             }
 
+            var result     = JsonConvert.DeserializeObject<T>(responseBody);
 
+            return result;
         }
     }
 }

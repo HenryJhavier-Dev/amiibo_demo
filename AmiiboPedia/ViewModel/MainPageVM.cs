@@ -11,7 +11,7 @@ namespace AmiiboPedia.ViewModel
 
         public async Task LoadAmiibos() {
 
-            var url = "https://www.amiiboapi.com/api/character/";
+            var url = "https://www.amiiboapi.com/api/amiibo/";
 
             var httpHelper = new HttpHelper<Amiibos>();
 
