@@ -20,10 +20,20 @@
     <Folder Include="ViewModel\" />
     <Folder Include="View\" />
     <Folder Include="Helpers\" />
+    <Folder Include="Resx\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="View\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Resx\AppResources.Designer.cs">
+      <DependentUpon>AppResources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Resx\AppResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
