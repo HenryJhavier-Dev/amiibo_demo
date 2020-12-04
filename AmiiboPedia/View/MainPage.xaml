@@ -7,8 +7,9 @@
 
         <StackLayout Padding="10,40,10,10" >
 
-            <SearchBar Placeholder="Busa tu Amiibo"
+            <SearchBar Placeholder="Busca tu Amiibo"
                        x:Name="searchAmiibo"
+                       Text="{Binding SearchBarText}"
                        SearchCommand="{Binding SearchCommand}"
                        SearchCommandParameter="{Binding Text,
                         Source={x:Reference searchAmiibo}}"/>
@@ -17,7 +18,11 @@
                 
                <CollectionView.ItemTemplate>
                     <DataTemplate>
-                            <Frame Margin="5" CornerRadius="10" >
+                        <ContentView>
+                            <Frame Margin="10,5,5,10"
+                                   Padding="8"
+                                   CornerRadius="1"
+                                   IsClippedToBounds="False" >
                                 <StackLayout >
                                     <Image Source="{Binding image}" HeightRequest="80"></Image>
                                     <Label Text ="{Binding name}" TextColor="Black"/>
@@ -27,11 +32,13 @@
 
                             </StackLayout>
                             </Frame>
+
+                        </ContentView>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-    </StackLayout>
+         </StackLayout>
 
 
         <Grid Opacity=".7"  IsVisible="{Binding IsBusy}" BackgroundColor="SlateGray">
@@ -40,6 +47,14 @@
                                HorizontalOptions="Center" VerticalOptions="Center"/>
 
         </Grid>
+
+
+        <Label
+            IsVisible="{Binding IsEmpty}"
+            Text="Sorry :( No tienes amiibos"
+            TextColor="DarkGray"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"/>
 
     </Grid>
 

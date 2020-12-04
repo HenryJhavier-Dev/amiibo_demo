@@ -25,5 +25,14 @@ namespace AmiiboPedia.Helpers
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        /*protected void SetProperty<TData>(ref TData storage, TData value, [CallerMemberName] string propertyName = "")
+        {
+            if (storage.Equals(value))
+                return;
+
+            storage = value;
+
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }*/
     }
 }
