@@ -6,13 +6,13 @@ namespace AmiiboPedia.Helpers
 {
     public class BaseViewModel: INotifyPropertyChanged
     {
-        public bool isBusy { get; set; }
+        private bool isBusy { get; set; }
 
         public bool IsBusy
         {
             get => isBusy;
 
-            private set {
+            set {
                 isBusy = value;
                 OnPropertyChanged();
             }

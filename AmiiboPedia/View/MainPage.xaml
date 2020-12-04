@@ -3,19 +3,44 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AmiiboPedia.View.MainPage">
 
-    <StackLayout Padding="10,40,10,10" >
+    <Grid>
 
-        <SearchBar Placeholder="Busa tu Amiibo"/>
-        <CollectionView>
-            <CollectionView.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>Mario</x:String>
-                    <x:String>Daysi</x:String>
-                    <x:String>Luigi</x:String>
-                </x:Array>
-            </CollectionView.ItemsSource>
-        </CollectionView>
+        <StackLayout Padding="10,40,10,10" >
+
+            <SearchBar Placeholder="Busa tu Amiibo"
+                       x:Name="searchAmiibo"
+                       SearchCommand="{Binding SearchCommand}"
+                       SearchCommandParameter="{Binding Text,
+                        Source={x:Reference searchAmiibo}}"/>
+
+            <CollectionView ItemsSource="{Binding Amiibos}"  >
+                
+               <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                            <Frame Margin="5" CornerRadius="10" >
+                                <StackLayout >
+                                    <Image Source="{Binding image}" HeightRequest="80"></Image>
+                                    <Label Text ="{Binding name}" TextColor="Black"/>
+                                    <Label Text="{Binding amiiboSeries, StringFormat='Amiibos serie: {0}'}"/>
+                                    <Label Text="{Binding gameSeries, StringFormat='Amiibos juego: {0}'}"/>
+                                    <Label Text="{Binding type, StringFormat='Tipo de amiibo: {0}'}"/>
+
+                            </StackLayout>
+                            </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
     </StackLayout>
+
+
+        <Grid Opacity=".7"  IsVisible="{Binding IsBusy}" BackgroundColor="SlateGray">
+            <ActivityIndicator IsRunning="{Binding IsBusy}"
+                               IsVisible="{Binding IsBusy}"
+                               HorizontalOptions="Center" VerticalOptions="Center"/>
+
+        </Grid>
+
+    </Grid>
 
 </ContentPage>

@@ -12,28 +12,22 @@ namespace AmiiboPedia.Helpers
         public async Task<T> GetRestServiceDataAsync(string url) {
 
             HttpClient client   = new HttpClient();
-            client.BaseAddress  = new Uri(url);
-
             string responseBody = string.Empty;
-            //var response        = await client.GetAsync(url);
-            //response.EnsureSuccessStatusCode();
-            //string responseBody = await response.Content.ReadAsStringAsync();
 
-            // Call asynchronous network methods in a try/catch block to handle exceptions.
             try
             {
-                HttpResponseMessage response = await client.GetAsync(client.BaseAddress);
-                response.EnsureSuccessStatusCode();
-                responseBody = await response.Content.ReadAsStringAsync();
+                //HttpResponseMessage response = await client.GetAsync(client.BaseAddress);
+                //response.EnsureSuccessStatusCode();
+                //responseBody = await response.Content.ReadAsStringAsync();
                 // Above three lines can be replaced with new helper method below
-                // string responseBody = await client.GetStringAsync(uri);
+                responseBody = await client.GetStringAsync(new Uri(url));
 
-                Console.WriteLine(responseBody);
+                //Console.WriteLine(responseBody);
             }
             catch (HttpRequestException e)
             {
-                Console.WriteLine("\nException Caught!");
-                Console.WriteLine("Message :{0} ", e.Message);
+                Console.Error.Write("\nException Caught!");
+                Console.Error.Write("Message :{0} ", e.Message);
             }
 
             var result     = JsonConvert.DeserializeObject<T>(responseBody);

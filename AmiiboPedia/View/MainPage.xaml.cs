@@ -21,13 +21,10 @@ namespace AmiiboPedia.View
         {
             base.OnAppearing();
 
-       
-            ViewModel = new MainPageVM();
-            this.BindingContext = ViewModel;
+            ViewModel      = new MainPageVM();
+            BindingContext = ViewModel;
 
             await ViewModel.LoadAmiibos();
-
-
 
         }
     }
