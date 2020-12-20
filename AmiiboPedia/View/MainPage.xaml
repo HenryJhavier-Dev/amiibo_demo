@@ -23,9 +23,13 @@
                                    Padding="8"
                                    CornerRadius="1"
                                    IsClippedToBounds="False" >
-                                <StackLayout >
-                                    <Image Source="{Binding image}" HeightRequest="80"></Image>
-                                    <Label Text ="{Binding name}" TextColor="Black"/>
+                                <StackLayout
+                                    Margin="10">
+                                    <Image Source="{Binding image}"
+                                           HeightRequest="80" Margin="0,0,0,10"></Image>
+                                    <Label Text ="{Binding name, StringFormat= 'Nombre: {0}'}"
+                                           FontAttributes="Bold, Italic"
+                                           TextColor="Black"/>
                                     <Label Text="{Binding amiiboSeries, StringFormat='Amiibos serie: {0}'}"/>
                                     <Label Text="{Binding gameSeries, StringFormat='Amiibos juego: {0}'}"/>
                                     <Label Text="{Binding type, StringFormat='Tipo de amiibo: {0}'}"/>

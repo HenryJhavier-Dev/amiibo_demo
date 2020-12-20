@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
-using AmiiboPedia.ViewModel;
+﻿using AmiiboPedia.ViewModel;
 using Xamarin.Forms;
 
 namespace AmiiboPedia.View
